@@ -71,7 +71,7 @@ function render() {
     const ticketAmount = document.getElementById('searchResult-text');
     ticketAmount.textContent = `本次搜尋共 ${people.length} 筆資料`
 
-    // drawChart();
+    drawChart();
 }
 
 //  新增套票按鈕上 綁定監聽事件 
@@ -103,8 +103,8 @@ function addCard() {
     wholeTicketForm.reset();
 
     render();
-    getTotalObject();
     // drawChart();
+
 }
 
 
@@ -125,14 +125,13 @@ function getTotalObject() {
         }
     })
 
-    getNewData();
 }
 
 // newData = [["高雄", 1], ["台北",1], ["台中", 1]]
 let newData = [];
 
 function getNewData() {
-    // getTotalObject();
+    getTotalObject();
     // 宣告 area 變數，用來儲存 Object.keys(totalObj) 的值
     let area = Object.keys(totalObj);
 
@@ -143,12 +142,14 @@ function getNewData() {
         ary.push(totalObj[item]);
         newData.push(ary);
     })
-    drawChart()
+
+    // totalObj = {}
+
 }
 
 function drawChart() {
 
-    // getNewData();
+    getNewData();
     // 將 newData 丟入 c3 產生器
     const chart = c3.generate({
         bindto: "#chart",
@@ -165,7 +166,8 @@ function drawChart() {
             title: "套票地區比重"
         },
 
-
     });
+
+    // newData = []
 
 }
